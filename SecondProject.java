@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.math.BigInteger;
 
 public class SecondProject {
     public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class SecondProject {
                 game.setGenre(gamereviews[4]);
                 game.setEditors_choice(gamereviews[5]);
                 game.setRelease_year(Integer.parseInt(gamereviews[6])); // int
-
+                game.set_qnt_year_action(0);
                 games.add(game);
             }
         }
@@ -47,10 +48,21 @@ public class SecondProject {
         int nAno = 0;
         int nMediocreAno = 0;
 
+        Double maiorScore = 0.0;
+        int iMaiorScore = 0;
+
+        Double menorScore = 10.0;
+        int iMenorScore = 10;
+        int iMaiorQuantidadeAction = 0;
+        int iMaiorAnoAction = 0;
+
         Double somaScore = 0.0;
         for (int i = 0; i < games.size(); i++) {
 
             somaScore = somaScore + games.get(i).getScore();
+
+            // Ao final: qual o ano em que foi lançado um maior número de jogos do gênero
+            // ‘Action’?
 
             if (games.get(i).getRelease_year() == anoPesquisa) { // conta numero de release no ano pesquisado
                 nAno = nAno + 1;
@@ -59,17 +71,50 @@ public class SecondProject {
                     nMediocreAno = nMediocreAno + 1;
                 }
             }
-        }
 
+            if (maiorScore < games.get(i).getScore()) {
+                maiorScore = games.get(i).getScore();
+                iMaiorScore = i;
+            }
+
+            if (menorScore > games.get(i).getScore()) {
+                menorScore = games.get(i).getScore();
+                iMenorScore = i;
+            }
+            if (games.get(i).getScore_phrase().equals("Action")) {
+                games.get(i).set_qnt_year_action(games.get(i).get_qnt_year_action());
+            }
+
+        }
         Double mediaScores = somaScore / nGames;
+
+        Double auxDesvioPadrao = 0.0;
+        // para desvio desvio padrão
+        for (int i = 0; i < games.size(); i++) {
+            auxDesvioPadrao = auxDesvioPadrao + Math.pow(i - mediaScores, 2);
+
+            if (games.get(i).get_qnt_year_action() >= iMaiorQuantidadeAction) {
+                iMaiorQuantidadeAction = games.get(i).get_qnt_year_action();
+                iMaiorAnoAction = games.get(i).getRelease_year();
+            }
+
+        }
+        Double desvioPadraoScores = Math.sqrt(auxDesvioPadrao / nGames);
 
         Double percentMediocreAno = 0.0 + ((100 * nMediocreAno) / nAno);
 
         System.out.println("| Total de release = " + nGames);
         System.out.println("| Média aritmética dos scores = " + mediaScores);
+        System.out.println("| Desvio padrão populacional dos scores = " + desvioPadraoScores);
+        System.out.println("| Melhor jogo [um dos maiores score] = " + games.get(iMaiorScore).getLine());
+        System.out.println("| Maior score = " + maiorScore);
+        System.out.println("| Pior jogo [um dos menores score] = " + games.get(iMenorScore).getLine());
+        System.out.println("| Menor score = " + menorScore);
         System.out.println("| Total de release no ano de " + anoPesquisa + " = " + nAno);
         System.out.println("| Total de 'Mediocre' no ano de " + anoPesquisa + " = " + nMediocreAno);
         System.out.println("| % de 'Mediocre' no ano de " + anoPesquisa + " = " + percentMediocreAno);
+        System.out.println("| Ano com a maior quantidade de jogos lançados genero Action " + iMaiorAnoAction
+                + " Quantidade " + iMaiorQuantidadeAction);
 
     }
 }

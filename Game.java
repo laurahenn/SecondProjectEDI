@@ -8,6 +8,7 @@ public class Game {
     private String genre;
     private String editors_choice;
     private Integer release_year;
+    private Integer qnt_year_action;
 
     /**
      * @return the title
@@ -107,4 +108,16 @@ public class Game {
         this.release_year = release_year;
     }
 
+    public String getLine() {
+        return this.title + " " + this.platform + " " + this.score_phrase + " " + this.score + " " + this.genre + " "
+                + editors_choice + " " + release_year;
+    }
+
+    public void set_qnt_year_action(Integer qnt_year_action) {
+        this.qnt_year_action = qnt_year_action + 1;
+    }
+
+    public Integer get_qnt_year_action() {
+        return qnt_year_action;
+    }
 }
