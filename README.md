@@ -10,9 +10,9 @@
 ## Tarefa 2 - sumarizar para cada ano de lançamento:
 
 - [X] ler arquivo e separar em arraylist 
-- [ ] número de reviews deste ano
-- [ ] percentual de ‘Mediocre’ reviews (sobre o número de reviews deste ano)
-- [ ] média aritmética dos scores
+- [X] número de reviews deste ano
+- [X] percentual de ‘Mediocre’ reviews (sobre o número de reviews deste ano)
+- [X] média aritmética dos scores
 - [ ] desvio padrão populacional dos scores
 - [ ] melhor jogo (basta indicar um entre os de maior score)
 - [ ] pior jogo (basta indicar um entre os de menor score)
