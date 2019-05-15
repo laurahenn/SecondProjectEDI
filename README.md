@@ -16,4 +16,4 @@
 - [X] desvio padrão populacional dos scores
 - [X] melhor jogo (basta indicar um entre os de maior score)
 - [X] pior jogo (basta indicar um entre os de menor score)
-- [ ] Ao final: qual o ano em que foi lançado um maior número de jogos do gênero ‘Action’? PARCIAL
+- [ ] Ao final: qual o ano em que foi lançado um maior número de jogos do gênero ‘Action’? PARCIAL (2008 += 300)
